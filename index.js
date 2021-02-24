@@ -8,7 +8,7 @@
 */
 
 // EXAMPLE SOLUTION CODE:
-function Airplane(name) {
+function Airplane(name) { // Airplane is CAPITALIZED - makes it a CONSTRUCTOR
     this.name = name;
     this.isFlying = false;
   }
@@ -38,14 +38,70 @@ function Airplane(name) {
       - Give instances of Person a method `.toString()`:
           + It should return a string with `name` and `age`. Example: "Mary, 50"
   */
-  
- function Person() {
-    
-  }
- 
- 
 
+
+// 🌸🌸🌸🌸🌸 Code 🌸🌸🌸🌸🌸 // 
+
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.stomach = [];
+  }
   
+          Person.prototype.eat = function(edible) {
+            if (this.stomach.length < 10) {
+              this.stomach.push(edible);
+            } 
+          }
+
+          Person.prototype.poop = function(poop) {
+            this.stomach = [];
+          }
+
+          Person.prototype.toString = function(toString) {
+            return `${this.name}, ${this.age}`
+            }
+
+
+
+
+// 🌸🌸🌸🌸🌸 Breakdown 🌸🌸🌸🌸🌸 
+
+// 🌸 Prototypes, are "Child" functions within the "Parent", ConstructorFunction
+//>>> Think like in CSS, Parent-Child relationships of inheritance, within divs/classes.
+
+// 🌸 Arguments, are the same as perameters, but they are what a Contructor Function is constructed with, thus every prototype(child) of a Constructor Function(parent) "lives within the home" of the Parent Function.
+
+// 🌸 A Contructor Function, is a function with pre-built objects and functions. The "Parent" Constructor Function is the "Model" that all "New"
+
+
+
+// 🌸🌸🌸 Uncomment below to view 🌸🌸🌸
+
+// function Person(name, age) { //constructor (capital P) with name and age ARGUMENTS, they are "arguments" because they are what the constructor function is CONSTRUCTED AROUND - It's what it needs to work, in any case. 
+//   this.name = name; // ability to call "name" argument
+//   this.age = age; // ability to call "age" argument
+//   this.stomach = []; // ability to call "stomach" and initialize stomach as an empty array
+// }
+
+//         Person.prototype.eat = function(edible) { // prototype child function of the Person parent
+//           if (this.stomach.length < 10) { // if stomach array length is less than 10
+//             this.stomach.push(edible); // push an edible in (if it's 10 or higher, it just won't perform)
+//           } 
+//         }
+
+//         Person.prototype.poop = function(poop) { // prototype child function that performs the function of emptying the stomach.
+//             this.stomach = []; // return the stomach array to an empty array.
+//         }
+
+//         Person.prototype.toString = function(toString) { // prototype child function that returns a string, that has their name and age inserted with a template literal; it will plug in whatever it is given.
+//           return `${this.name}, ${this.age}`
+//           }
+
+
+// 🌸 ^^^ THERE IS NO CLOSING BRACKET to put them within the scope of the Parent, because prototypes are their own, seperate Child functions from the Parent, but they can't EXIST, LIVE, or OPERATE without the Parent! (They're all grown up, but they still live under their Parent's roof)
+
+
   
   
   
@@ -63,31 +119,39 @@ function Airplane(name) {
           + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
   */
   
- function Car() {
-    
-  }
+function Car(model, milesPerGallon) {
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = 0;
+  this.odometer = 0; 
+}
+
+        Car.prototype.fill = function(gallons) {
+          this.tank += gallons;
+        }
   
-  
-  /*
-    TASK 3
-      - Write a Baby constructor subclassing Person.
-      - Besides `name` and `age`, Baby takes a third argument to initialize `favoriteToy`.
-      - Besides the methods on Person.prototype, babies have the ability to `.play()`:
-          + Should return a string "Playing with x", x being the favorite toy.
-  */
- function Baby() {
+/*
+  TASK 3
+    - Write a Baby constructor subclassing Person.
+    - Besides `name` and `age`, Baby takes a third argument to initialize `favoriteToy`.
+    - Besides the methods on Person.prototype, babies have the ability to `.play()`:
+        + Should return a string "Playing with x", x being the favorite toy.
+*/
+
+function Baby() {
    
   }
  
   
-  /* 
-    TASK 4
-    In your own words explain the four principles for the "this" keyword below:
-    1. 
-    2. 
-    3. 
-    4. 
-  */
+/* 
+  TASK 4
+  In your own words explain the four principles for the "this" keyword below:
+  1. 
+  2. 
+  3. 
+  4. 
+
+*/
   
   
   ///////// END OF CHALLENGE /////////
