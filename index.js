@@ -60,7 +60,7 @@ function Person(name, age) {
 
           Person.prototype.toString = function(toString) {
             return `${this.name}, ${this.age}`
-            }
+          }
 
 
 
@@ -99,7 +99,7 @@ function Person(name, age) {
 //           }
 
 
-// 🌸 ^^^ THERE IS NO CLOSING BRACKET to put them within the scope of the Parent, because prototypes are their own, seperate Child functions from the Parent, but they can't EXIST, LIVE, or OPERATE without the Parent! (They're all grown up, but they still live under their Parent's roof)
+// 🌸 ^^^ THERE IS NO CLOSING BRACKET to put them within the scope of the Parent, because prototypes are their own, seperate Child functions from the Parent that can be called in the GLOBAL WINDOW but they can't EXIST, LIVE, or OPERATE without the Parent! (They're all grown up, but they still live under their Parent's roof)
 
 
   
@@ -119,7 +119,7 @@ function Person(name, age) {
           + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
   */
   
-function Car(model, milesPerGallon) {
+function Car(model, milesPerGallon) { 
   this.model = model;
   this.milesPerGallon = milesPerGallon;
   this.tank = 0;
@@ -129,7 +129,27 @@ function Car(model, milesPerGallon) {
         Car.prototype.fill = function(gallons) {
           this.tank += gallons;
         }
+
+        Car.prototype.drive = function(distance) {
+          this.odometer += distance
+              return this.tank < distance / this.milesPergallon ? `I ran out of fuel at ${this.odometer}` : false;
+        }
+
+        
+// 🌸🌸🌸🌸🌸 Breakdown 🌸🌸🌸🌸🌸
+
+// function Car(model, milesPerGallon) { //initialize the car function with the two arguments
+//   this.model = model; // intialized the model argument for use
+//   this.milesPerGallon = milesPerGallon; // intialized the model argument for use
+//   this.tank = 0; // initializes the tank argument and sets it's value to 0
+//   this.odometer = 0; // initializes the odometer argument and sets the value to 0
+// }
+
+//       Car.prototype.fill = function(gallons) {
+//         this.tank += gallons;
+//       }
   
+
 /*
   TASK 3
     - Write a Baby constructor subclassing Person.
@@ -138,18 +158,37 @@ function Car(model, milesPerGallon) {
         + Should return a string "Playing with x", x being the favorite toy.
 */
 
-function Baby() {
-   
-  }
- 
-  
+// const baby = new Person({
+//   favoriteToy
+// })
+
+function Baby(name, age, favoriteToy) {
+  this.name = name;
+  this.age = age;
+  this.favoriteToy = favoriteToy;
+  Person.call(this, name, age)
+}
+    Baby.prototype = Object.create(Person.prototype);
+    
+    Baby.prototype.play = function(play) {
+          return `Playing with ${this.favoriteToy}`
+        }
+
+
 /* 
   TASK 4
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+
+  1. Implicit Binding - when a constructor function is invoked, the word to the left of .this is what .this is referring to.
+
+  2. Explicit Binding - Explicitly telling JavaScript using the .call, .apply, or .bind what the .this keyword is referring to.
+   - .call we pass in our arguments 1 by 1 - immediatly invokes the function!
+   - .apply - we pass in our arguments as an array - immedialty invokes the function
+   - .bind - we pass in our arguments 1 by 1 - it does not immediatly invoke the function, instead it returns a bran new function that can be invoked later
+
+  3. New Binding - Using the "new" keyword constructs a new object and "this" points to it. When a function was invoked as a constructor function using the new keyword "this" points to the newly created object. 
+
+  4. Window/Global Binding - Bound to the global window, not what we want because we want everything to be bound to the parent Constructor Functions.
 
 */
   
