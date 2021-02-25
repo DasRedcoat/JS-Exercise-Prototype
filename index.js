@@ -145,9 +145,15 @@ function Car(model, milesPerGallon) {
 //   this.odometer = 0; // initializes the odometer argument and sets the value to 0
 // }
 
-//       Car.prototype.fill = function(gallons) {
+//       Car.prototype.fill = function(gallons) { // prototype Child function that adds an intiger value to the gas tank argument
 //         this.tank += gallons;
 //       }
+
+//       Car.prototype.drive = function(distance) { // prototype child function for .drive, that makes the car's odometer go up by the distance intiger value given
+//         this.odometer += distance
+//             return this.tank < distance / this.milesPergallon ? `I ran out of fuel at ${this.odometer}` : false;
+//       }
+//       //return "If the distance divided by the miles per gallon is is greater than the value set in the gas tank, return "I ran out of fuel with the {odometer value} imported into the template literal
   
 
 /*
@@ -162,9 +168,7 @@ function Car(model, milesPerGallon) {
 //   favoriteToy
 // })
 
-function Baby(name, age, favoriteToy) {
-  this.name = name;
-  this.age = age;
+function Baby(name, age, favoriteToy) { 
   this.favoriteToy = favoriteToy;
   Person.call(this, name, age)
 }
